@@ -1,0 +1,11 @@
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over browser:
+brwower executes js-code
+that creates a new note
+and add it to the local
+notes variable, renders
+the notes to display
+and sends the new note
+to the server
+end note
