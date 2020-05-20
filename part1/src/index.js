@@ -79,30 +79,38 @@ const App = () => {
   }
 
   const DisplayStat = (props) => {
+    //console.log(props.statTitle, props.stat)
+    if (isNaN(props.stat)) {
+     if(props.statTitle === "positive") {
+      return(
+        <p>{props.statTitle} 0 %</p>
+        )
+     }
+     return(
+      <p>{props.statTitle} 0</p>
+      )
+    }
+    if(props.statTitle === "positive") {
+      return(
+        <p>{props.statTitle} {props.stat} %</p>
+        )
+     }
     return(
     <p>{props.statTitle} {props.stat}</p>
     )
   }
 
-  const DisplayAverage = (props) => {
-    if ((props.good + props.neutral + props.bad) === 0) {
-      return(
-        <p>average 0</p>
-        )
-    }
+  const Statistics = (props) => {
     return(
-    <p>average {(props.good - props.bad)/(props.good + props.neutral + props.bad)}</p>
-    )
-  }
-
-  const DisplayPositivePercentage = (props) => {
-    if ((props.good + props.neutral + props.bad) === 0) {
-      return(
-        <p>positive 0 %</p>
-        )
-    }
-    return(
-    <p>positive {(props.good)/(props.good + props.neutral + props.bad)} %</p>
+      <div>
+        <Title title = {props.statTitle}/>
+        <DisplayStat statTitle = {props.goodText} stat = {props.good}/>
+        <DisplayStat statTitle = {props.neutralText} stat = {props.neutral}/>
+        <DisplayStat statTitle = {props.badText} stat = {props.bad}/>
+        <DisplayStat statTitle = {props.allText} stat = {props.good+props.neutral+props.bad}/>
+        <DisplayStat statTitle = {props.averageText} stat = {(props.good - props.bad)/(props.good + props.neutral + props.bad)}/>
+        <DisplayStat statTitle = {props.positiveText} stat = {(props.good)/(props.good + props.neutral + props.bad)}/>
+      </div>
     )
   }
 
@@ -118,6 +126,8 @@ const App = () => {
   const badText = "bad" 
   const statTitle = "statistics"
   const allText = "all"
+  const averageText = "average"
+  const positiveText = "positive"
 
   const incrementGood = () => {
     console.log("Good count:", good)
@@ -140,13 +150,7 @@ const App = () => {
       <Button handleClick = {incrementGood} text = {goodText}/>
       <Button handleClick = {incrementNeutral} text = {neutralText}/>
       <Button handleClick = {incrementBad} text = {badText}/>
-      <SubTitle title = {statTitle}/>
-      <DisplayStat statTitle = {goodText} stat = {good}/>
-      <DisplayStat statTitle = {neutralText} stat = {neutral}/>
-      <DisplayStat statTitle = {badText} stat = {bad}/>
-      <DisplayStat statTitle = {allText} stat = {good+neutral+bad}/>
-      <DisplayAverage good = {good} neutral = {neutral} bad = {bad} />
-      <DisplayPositivePercentage good = {good} neutral = {neutral} bad = {bad} />
+      <Statistics statTitle = {statTitle} goodText = {goodText} good = {good} neutralText = {neutralText} neutral = {neutral} badText = {badText} bad = {bad} allText = {allText} averageText = {averageText} positiveText = {positiveText}/>
     </div>
   )
 }
