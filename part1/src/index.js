@@ -84,6 +84,28 @@ const App = () => {
     )
   }
 
+  const DisplayAverage = (props) => {
+    if ((props.good + props.neutral + props.bad) === 0) {
+      return(
+        <p>average 0</p>
+        )
+    }
+    return(
+    <p>average {(props.good - props.bad)/(props.good + props.neutral + props.bad)}</p>
+    )
+  }
+
+  const DisplayPositivePercentage = (props) => {
+    if ((props.good + props.neutral + props.bad) === 0) {
+      return(
+        <p>positive 0 %</p>
+        )
+    }
+    return(
+    <p>positive {(props.good)/(props.good + props.neutral + props.bad)} %</p>
+    )
+  }
+
  const App = () => {
   // save clicks of each button to own state
   const [good, setGood] = useState(0)
@@ -95,6 +117,7 @@ const App = () => {
   const neutralText = "neutral"
   const badText = "bad" 
   const statTitle = "statistics"
+  const allText = "all"
 
   const incrementGood = () => {
     console.log("Good count:", good)
@@ -121,6 +144,9 @@ const App = () => {
       <DisplayStat statTitle = {goodText} stat = {good}/>
       <DisplayStat statTitle = {neutralText} stat = {neutral}/>
       <DisplayStat statTitle = {badText} stat = {bad}/>
+      <DisplayStat statTitle = {allText} stat = {good+neutral+bad}/>
+      <DisplayAverage good = {good} neutral = {neutral} bad = {bad} />
+      <DisplayPositivePercentage good = {good} neutral = {neutral} bad = {bad} />
     </div>
   )
 }
