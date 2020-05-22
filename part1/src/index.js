@@ -80,16 +80,6 @@ const App = () => {
 
   const DisplayStat = (props) => {
     //console.log(props.statTitle, props.stat)
-    if (isNaN(props.stat)) {
-     if(props.statTitle === "positive") {
-      return(
-        <p>{props.statTitle} 0 %</p>
-        )
-     }
-     return(
-      <p>{props.statTitle} 0</p>
-      )
-    }
     if(props.statTitle === "positive") {
       return(
         <p>{props.statTitle} {props.stat} %</p>
@@ -101,6 +91,14 @@ const App = () => {
   }
 
   const Statistics = (props) => {
+    if((props.good + props.neutral + props.bad) === 0) {
+      return(
+        <div>
+          <Title title = {props.statTitle}/>
+          <p>No feedback given</p>
+        </div>
+      )
+    }
     return(
       <div>
         <Title title = {props.statTitle}/>
