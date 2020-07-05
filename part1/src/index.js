@@ -7,12 +7,6 @@ import ReactDOM from 'react-dom';
     )
   }
 
-  const SubTitle = (props) => {
-    return(
-    <h2>{props.title}</h2>
-    )
-  }
-
   const Button = (props) => {
     return(
       <button onClick = {props.handleClick}>
@@ -22,14 +16,23 @@ import ReactDOM from 'react-dom';
   }
 
   const Statistic = (props) => {
-    //console.log(props.text, props.stat)
     if(props.text === "positive") {
       return(
-        <p>{props.text} {props.stat} %</p>
+        <tbody>
+          <tr>
+            <td>{props.text}</td>
+            <td>{props.stat} %</td>
+          </tr>
+        </tbody>
         )
      }
     return(
-    <p>{props.text} {props.stat}</p>
+      <tbody>
+          <tr>
+            <td>{props.text}</td>
+            <td>{props.stat}</td>
+          </tr>
+        </tbody>
     )
   }
 
@@ -45,12 +48,14 @@ import ReactDOM from 'react-dom';
     return(
       <div>
         <Title title = {props.statTitle}/>
-        <Statistic text = {props.goodText} stat = {props.good}/>
-        <Statistic text = {props.neutralText} stat = {props.neutral}/>
-        <Statistic text = {props.badText} stat = {props.bad}/>
-        <Statistic text = {props.allText} stat = {props.good+props.neutral+props.bad}/>
-        <Statistic text = {props.averageText} stat = {(props.good - props.bad)/(props.good + props.neutral + props.bad)}/>
-        <Statistic text = {props.positiveText} stat = {(props.good)/(props.good + props.neutral + props.bad)}/>
+        <table>
+          <Statistic text = {props.goodText} stat = {props.good}/>
+          <Statistic text = {props.neutralText} stat = {props.neutral}/>
+          <Statistic text = {props.badText} stat = {props.bad}/>
+          <Statistic text = {props.allText} stat = {props.good+props.neutral+props.bad}/>
+          <Statistic text = {props.averageText} stat = {(props.good - props.bad)/(props.good + props.neutral + props.bad)}/>
+          <Statistic text = {props.positiveText} stat = {(props.good)/(props.good + props.neutral + props.bad)}/>
+        </table>
       </div>
     )
   }
